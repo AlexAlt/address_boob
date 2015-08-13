@@ -27,5 +27,14 @@ class Contact
   define_method(:id) do
     @id
   end
-  
+
+  define_singleton_method(:find) do |id|
+    found_contact = nil
+    @@all_contacts.each() do |contact|
+      if contact.id().eql?(id.to_i())
+        found_contact = contact
+      end
+    end
+    found_contact
+  end
 end

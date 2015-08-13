@@ -63,4 +63,14 @@ describe(Contact) do
     end
   end
 
+  describe(".find") do
+    it('finds a specific contact using its id') do
+      test_contact = Contact.new(:first_name =>"Alex", :last_name => "Altieri", :job_title => "Human", :company => "Universe")
+      test_contact.save()
+      test_contact2 = Contact.new(:first_name =>"Leah", :last_name => "Klamkin", :job_title => "Alien", :company => "Alpha Centauri")
+      test_contact2.save()
+      expect(Contact.find(1)).to(eq(test_contact))
+    end
+  end
+
 end
