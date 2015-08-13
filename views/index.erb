@@ -1,0 +1,25 @@
+<h1>Address Book!</h1>
+
+<h3>Add a new contact</h3>
+<form action='/new_contact' method='post'>
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input id="first_name" name="first_name" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="last_name">Last Name</label>
+    <input id="last_name" name="last_name" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="job">Job Title</label>
+    <input id="job" name="job" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="company">Company</label>
+    <input id="company" name="company" type="text" class="form-control">
+  </div>
+
+  <button type="submit" class="btn-success">Submit</button>
+</form>
+
+<p><a href='/all_contacts'>See all contacts</a></p>
