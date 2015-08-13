@@ -1,23 +1,23 @@
 <h1><%= @contact.first_name() %> <%= @contact.last_name() %></h1>
-<h3><%= @contact.job_title() %>, <%= @contact.company() %></h3>
+<h4><%= @contact.job_title() %>, <i><%= @contact.company() %></i></h4>
 
 <ul>
   <% @tele_numbers.each() do |number| %>
-  <li>Phone Number: (<%= number.area_code() %>) <%= number.number() %> <i>(<%= number.type %>)</i></li>
+  <li><%= number.type %>: (<%= number.area_code() %>) <%= number.number() %></li>
   <% end %>
 </ul>
 
 
 <ul>
   <% @mailing_addresses.each() do |mail| %>
-  <li>Mailing Address: <%= mail.street_number() %> <%= mail.street_name() %>, <%= mail.city %>, <%= mail.state() %>, <%= mail.zip() %> <%= mail.type() %></li>
+  <li><u>Mailing Address (<i><%= mail.type() %></i>):</u><br><%= mail.street_number() %> <%= mail.street_name() %><br><%= mail.city %>, <%= mail.state() %> <%= mail.zip() %></li>
   <% end %>
 </ul>
 
 
 <ul>
   <% @emailing_addresses.each() do |email| %>
-  <li>Email Address: <%= email.address() %> <%= email.type() %></li>
+  <li>Email (<i><%= email.type() %></i>): <u><a href="mailto:<% email.address() %>"><%= email.address() %></a></u></li>
   <% end %>
 </ul>
 
