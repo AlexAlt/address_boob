@@ -7,6 +7,7 @@ class PhoneNumber
     @area_code = attributes.fetch(:area_code)
     @number = attributes.fetch(:number)
     @type = attributes.fetch(:type)
+    @id = @@all_phone_numbers.length().+(1)
   end
 
   define_singleton_method(:all) do
@@ -15,5 +16,13 @@ class PhoneNumber
 
   define_method(:save) do
     @@all_phone_numbers.push(self)
+  end
+
+  define_singleton_method(:clear) do
+    @@all_phone_numbers = []
+  end
+
+  define_method(:id) do
+    @id
   end
 end

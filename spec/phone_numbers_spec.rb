@@ -3,6 +3,10 @@ require('phone_numbers')
 
 describe(PhoneNumber) do
 
+  before() do
+    PhoneNumber.clear()
+  end
+
   describe('#area_code') do
     it('returns the area code for the phone number') do
       test_number = PhoneNumber.new(:area_code =>"860", :number => "123-4567", :type => "cell")
@@ -35,6 +39,21 @@ describe(PhoneNumber) do
       test_number = PhoneNumber.new(:area_code =>"860", :number => "123-4567", :type => "cell")
       test_number.save()
       expect(PhoneNumber.all()).to(eq([test_number]))
+    end
+  end
+
+  describe('.clear') do
+    it('clears the array of phone numbers') do
+      PhoneNumber.clear()
+      expect(PhoneNumber.all()).to(eq([]))
+    end
+  end
+
+  describe('#id') do
+    it('returns the id of a phone number') do
+      test_number = PhoneNumber.new(:area_code =>"860", :number => "123-4567", :type => "cell")
+      test_number.save()
+      expect(test_number.id()).to(eq(1))
     end
   end
 end
