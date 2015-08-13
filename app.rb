@@ -29,22 +29,61 @@ end
 get('/contact/:id') do
   @contact = Contact.find(params.fetch('id').to_i())
   @tele_numbers = @contact.tele_numbers()
+  @emailing_addresses = @contact.emailing_addresses()
+  @mailing_addresses = @contact.mailing_addresses()
   erb(:contact)
 end
 
-get('/contact/:id/phone_form') do
+get('/contact/:id/phones/new') do
   @contact = Contact.find(params.fetch('id').to_i())
   erb(:phone_form)
 end
 
-post('/contact/:id') do
-  @contact = Contact.find(params.fetch('id').to_i())
-  @tele_numbers = @contact.tele_numbers()
+post('/phones') do
   area_code = params.fetch('area_code')
   number = params.fetch('number')
   type = params.fetch('type')
   new_number = PhoneNumber.new(:area_code => area_code, :number => number, :type => type)
   new_number.save()
+  id = params.fetch('id')
+  @contact = Contact.find(id.to_i())
   @contact.add_phone_number(new_number)
-  erb(:contact)
+  redirect("/contact/#{id}")
+end
+
+get('/contact/:id/emails/new') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  erb(:email_form)
+end
+
+post('/emails') do
+  address = params.fetch('address')
+  type = params.fetch('type')
+  id = params.fetch('id')
+  new_email = Email.new(:address => address, :type=> type)
+  new_email.save()
+  @contact = Contact.find(id.to_i())
+  @contact.add_emailing_address(new_email)
+  redirect("/contact/#{id}")
+end
+
+get('/contact/:id/mail/new') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  erb(:mail_form)
+end
+
+post('/mail') do
+  street_number = params.fetch('street_number')
+  street_name = params.fetch('street_name')
+  city = params.fetch('city')
+  state = params.fetch('state')
+  zip = params.fetch('zip')
+  type = params.fetch('type')
+  id = params.fetch('id')
+  new_mail_address = MailAddress.new(:street_number => street_number, :street_name => street_name, :city => city, :state => state, :zip => zip, :type => type)
+  new_mail_address.save()
+  @contact = Contact.find(id.to_i())
+  @contact.add_mailing_address(new_mail_address)
+  redirect("/contact/#{id}")
+
 end

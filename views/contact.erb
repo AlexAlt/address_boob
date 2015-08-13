@@ -8,4 +8,20 @@
 </ul>
 
 
-<p><a href="/contact/<%= @contact.id() %>/phone_form">Add a phone number</a></p>
+<ul>
+  <% @mailing_addresses.each() do |mail| %>
+  <li>Mailing Address: <%= mail.street_number() %> <%= mail.street_name() %>, <%= mail.city %>, <%= mail.state() %>, <%= mail.zip() %> <%= mail.type() %></li>
+  <% end %>
+</ul>
+
+
+<ul>
+  <% @emailing_addresses.each() do |email| %>
+  <li>Email Address: <%= email.address() %> <%= email.type() %></li>
+  <% end %>
+</ul>
+
+
+<p><a href="/contact/<%= @contact.id() %>/phones/new">Add a phone number</a></p>
+<p><a href="/contact/<%= @contact.id() %>/mail/new">Add a mailing address</a></p>
+<p><a href="/contact/<%= @contact.id() %>/emails/new">Add an email address</a></p>

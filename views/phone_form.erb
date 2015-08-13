@@ -1,6 +1,7 @@
 <h2>Add a phone number</h2>
 
-<form action='/contact/<%= @contact.id() %>' method='post'>
+<form action='/phones' method='post'>
+  <input id='id' name='id' type='hidden' value='<%= @contact.id() %>'>
   <div class="form-group">
     <label for="area_code">Area Code</label>
     <input id="area_code" name="area_code" type="text" class="form-control">

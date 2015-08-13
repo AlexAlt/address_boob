@@ -15,10 +15,18 @@ describe('the contacts list homepage path', {:type => :feature}) do
   end
 end
 
-describe('the path to list of contact info') do
+describe('the path to list of contact info', {:type => :feature}) do
   it('list the contact information for specific contact') do
     visit('/all_contacts')
     click_link('Alex Altieri')
     expect(page).to have_content("860")
+  end
+end
+
+describe('the path to email form', {:type => :feature}) do
+  it('creates a form to enter a new email address') do
+    visit('/contact/:id/')
+    click_link('Add an email address')
+    expect(page).to have_content("Email form")
   end
 end
