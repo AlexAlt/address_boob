@@ -54,4 +54,13 @@ describe(Contact) do
       expect(Contact.all()).to(eq([]))
     end
   end
+
+  describe('#id') do
+    it('returns the ID of the contact') do
+      test_contact = Contact.new(:first_name =>"Alex", :last_name => "Altieri", :job_title => "Human", :company => "Universe")
+      test_contact.save()
+      expect(test_contact.id()).to(eq(1))
+    end
+  end
+
 end
