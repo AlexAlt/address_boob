@@ -35,4 +35,12 @@ describe(Contact) do
       expect(Contact.all()).to(eq([]))
     end
   end
+
+  describe('#save') do
+    it('saves a contact to an array of contacts') do
+      test_contact = Contact.new(:first_name =>"Alex", :last_name => "Altieri", :job_title => "Human", :company => "Universe")
+      test_contact.save()
+      expect(Contact.all()).to(eq([test_contact]))
+    end
+  end
 end

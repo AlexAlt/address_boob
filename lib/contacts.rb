@@ -13,5 +13,9 @@ class Contact
   define_singleton_method(:all) do
     @@all_contacts
   end
-  
+
+  define_method(:save) do
+    @@all_contacts.push(self)
+  end
+
 end
