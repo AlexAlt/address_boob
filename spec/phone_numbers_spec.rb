@@ -23,4 +23,18 @@ describe(PhoneNumber) do
       expect(test_number.type()).to(eq("cell"))
     end
   end
+
+  describe('.all') do
+    it('initially returns an empty array') do
+      expect(PhoneNumber.all()).to(eq([]))
+    end
+  end
+
+  describe('#save') do
+    it('saves a phone number in the phone numbers array') do
+      test_number = PhoneNumber.new(:area_code =>"860", :number => "123-4567", :type => "cell")
+      test_number.save()
+      expect(PhoneNumber.all()).to(eq([test_number]))
+    end
+  end
 end
