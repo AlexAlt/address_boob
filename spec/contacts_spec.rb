@@ -29,4 +29,10 @@ describe(Contact) do
       expect(test_contact.company()).to(eq("Universe"))
     end
   end
+
+  describe('.all') do
+    it('initially returns an empty array') do
+      expect(Contact.all()).to(eq([]))
+    end
+  end
 end
